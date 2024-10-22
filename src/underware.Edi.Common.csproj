@@ -6,7 +6,7 @@
         <Nullable>enable</Nullable>
         <AssemblyName>underware.Edi.Common</AssemblyName>
         <RootNamespace>underware.Edi.Common</RootNamespace>
-        <LangVersion>10</LangVersion>
+        <LangVersion>12</LangVersion>
     </PropertyGroup>
 
 </Project>

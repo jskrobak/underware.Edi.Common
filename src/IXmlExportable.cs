@@ -1,8 +1,9 @@
-﻿using System.Xml.Linq;
+﻿using System.Text;
+using System.Xml.Linq;
 
 namespace underware.Edi.Common;
 
 public interface IXmlExportable
 {
-    XDocument ToXml();
+    XDocument ToXml(Encoding outEnc);
 }
