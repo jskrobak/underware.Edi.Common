@@ -2,7 +2,7 @@ namespace underware.Edi.Common.DocumentModel;
 
 public class PaymentRules
 {
-    public DateTime DueDate { get; set; }
+    public DateTime? DueDate { get; set; }
     public string BankCode { get; set; }    
     public string BankAccountNo { get; set; }
     public string VariableSymbol { get; set; }

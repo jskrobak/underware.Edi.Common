@@ -1,6 +1,6 @@
 namespace underware.Edi.Common.DocumentModel;
 
-public class OrderResponse: BaseDocument
+public class OrderResponse: BaseBillDocument
 {
     public DateTime DeliveryDate { get; set; }
     public DocumentReference PurchaseOrder { get; set; }

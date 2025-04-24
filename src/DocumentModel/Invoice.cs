@@ -1,6 +1,6 @@
 ﻿namespace underware.Edi.Common.DocumentModel;
 
-public class Invoice: BaseDocument
+public class Invoice: BaseBillDocument
 {
     public string InvoiceType { get; set;}
     public DateTime FulfillmentDate { get; set;}

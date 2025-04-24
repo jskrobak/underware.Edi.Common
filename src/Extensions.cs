@@ -1,10 +1,27 @@
 ﻿using System.Globalization;
+using System.Text;
 using System.Xml.Linq;
 
 namespace underware.Edi.Common;
 
 public static class Extensions
 {
+    
+    public static string DistillNumbers(this string input)
+    {
+        if (string.IsNullOrEmpty(input))
+            return string.Empty;
+
+        var result = new StringBuilder();
+
+        foreach (var c in input.Where(char.IsDigit))
+        {
+            result.Append(c);
+        }
+
+        return result.ToString();
+    }
+    
     public static string[] SplitToChunks(this string text, int chunkSize, int chunks)
     {
         var parts = new string[chunks];

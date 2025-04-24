@@ -8,6 +8,6 @@ public interface IEdiInterchange
     string Receiver { get; }
     string Format { get;}
     string RefNo { get; }
-    DateTime Created { get; }
+    DateTime? Created { get; }
     IEnumerable<IDocument> Documents { get; }
 }

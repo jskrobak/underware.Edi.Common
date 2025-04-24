@@ -1,6 +1,6 @@
 ﻿namespace underware.Edi.Common.DocumentModel;
 
-public class ReceivingAdvice: BaseDocument
+public class ReceivingAdvice: BaseBillDocument
 {
     public DateTime? DeliveryDate { get; set; }
     public DateTime? ReceiveDate { get; set; }

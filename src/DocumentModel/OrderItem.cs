@@ -4,4 +4,6 @@ public class OrderItem: BaseDocumentItem
 {
     public decimal? NetUnitPrice { get; set; }
     public decimal Qty { get; set; }
+    
+    public IEdiData Data { get; set; }
 }

@@ -1,13 +1,8 @@
 namespace underware.Edi.Common;
 
-public class ParseDocumentException : Exception
+public class ParseDocumentException(IDocument document, IEdiInterchange interchange, Exception innerEx)
+    : Exception("Failed to parse document", innerEx)
 {
-    public ParseDocumentException(IDocument document, IEdiInterchange interchange): base()
-    {
-        Document = document;
-        Interchange = interchange;
-    }
-
-    public IDocument Document { get; }
-    public IEdiInterchange Interchange { get; }
+    public IDocument Document { get; } = document;
+    public IEdiInterchange Interchange { get; } = interchange;
 }
