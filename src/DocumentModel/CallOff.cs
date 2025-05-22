@@ -38,5 +38,5 @@ public class CallOff : BaseDocument
     public decimal? BackorderQty { get; set; }
     public decimal? ImmediateNeedQty { get; set; }
     
-    public List<CallOffDelivery> Deliveries { get; set; } = new List<CallOffDelivery>();
+    public List<Delivery> Deliveries { get; set; } = new List<Delivery>();
 }
