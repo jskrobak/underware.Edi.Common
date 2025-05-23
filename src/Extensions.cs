@@ -6,6 +6,11 @@ namespace underware.Edi.Common;
 
 public static class Extensions
 {
+
+    public static byte[] GetBytes(this IEdiInterchange itr, Encoding enc)
+    {
+        return enc.GetBytes(itr.ToString());
+    }   
     
     public static string DistillNumbers(this string input)
     {
