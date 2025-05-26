@@ -7,6 +7,7 @@
         <AssemblyName>underware.Edi.Common</AssemblyName>
         <RootNamespace>underware.Edi.Common</RootNamespace>
         <LangVersion>12</LangVersion>
+        <GeneratePackageOnBuild>true</GeneratePackageOnBuild>
     </PropertyGroup>
 
 </Project>
