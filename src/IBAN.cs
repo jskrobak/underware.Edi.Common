@@ -49,6 +49,70 @@ public class IBAN
         };
     }
 
+    public static IBAN Compose(string bankCode, string accountNumber)
+    {
+        var iban = new IBAN()
+        {
+            CountryCode = "CZ",
+            CheckDigits = "00", // Placeholder, should be calculated
+            BankCode = bankCode,
+            AccountNumber = accountNumber.Replace("-", ""),
+            BIC = Bank.AllBanks.FirstOrDefault(b => b.Code == bankCode)?.BIC
+        };
+        
+        // Pad the account number to 10 digits
+        var paddedAccountNumber = iban.AccountNumber.PadLeft(16, '0');
+
+        // Move country code and check digits to the end
+        var rearranged = $"{bankCode}{paddedAccountNumber}CZ00";
+
+        // Replace letters with numbers (A=10, B=11, ..., Z=35)
+        var sb = new System.Text.StringBuilder();
+        foreach (var c in rearranged)
+        {
+            if (char.IsLetter(c))
+            {
+                var converted = c - 'A' + 10;
+                sb.Append(converted);
+            }
+            else
+            {
+                sb.Append(c);
+            }
+        }
+
+        // Calculate mod 97
+        var numericIban = sb.ToString();
+        var mod97 = Mod97(numericIban);
+
+        // Calculate check digits
+        var checkDigits = 98 - mod97;
+        
+        // Compose final IBAN
+        iban.CheckDigits = checkDigits.ToString("D2").PadLeft(2, '0');
+        iban.Value = $"CZ{iban.CheckDigits}{bankCode}{paddedAccountNumber}";
+
+        return iban;
+        return iban;
+    }
+    
+    private static int Mod97(string numericIban)
+    {
+        // Because numericIban can be very long, use chunking to avoid overflow
+        var remainder = numericIban;
+        const int chunkSize = 9; // Safe size to prevent overflow in int
+        var rem = 0;
+
+        while (remainder.Length > 0)
+        {
+            var part = rem + remainder[..Math.Min(chunkSize, remainder.Length)];
+            rem = (int)(long.Parse(part) % 97);
+            remainder = remainder[Math.Min(chunkSize, remainder.Length)..];
+        }
+
+        return rem;
+    }
+
     private class Bank
     {
         public string Code { get; set; }

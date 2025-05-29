@@ -7,6 +7,14 @@ namespace underware.Edi.Common;
 public static class Extensions
 {
 
+    public static string CropFromRight(this string text, int maxLength)
+    {
+        if (string.IsNullOrEmpty(text) || text.Length <= maxLength)
+            return text;
+
+        return text[^maxLength..];
+    }
+    
     public static byte[] GetBytes(this IEdiInterchange itr, Encoding enc)
     {
         return enc.GetBytes(itr.ToString());
