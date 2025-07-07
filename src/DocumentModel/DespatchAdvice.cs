@@ -12,6 +12,8 @@ public class DespatchAdvice: BaseBillDocument
     
     public string AgreementNumber { get; set; }
     
+    public  Party Carrier { get; set; }
+    
     public DocumentReference PurchaseOrder { get; set; }
     public IEnumerable<DespatchAdviceItem> Items { get; set; }
     public string Plant { get; set; }
