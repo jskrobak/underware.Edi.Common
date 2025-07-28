@@ -22,4 +22,5 @@ public class DeliveryForecastItem
     public List<Delivery> Deliveries { get; set; } = [];
     public DateTime? CalculationDate { get; set; }
     public string UsingCode { get; set; }
+    public decimal ImmediateNeedQty { get; set; }
 }
