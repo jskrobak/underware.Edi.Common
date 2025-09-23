@@ -10,6 +10,7 @@ public class DespatchAdvice: BaseBillDocument
     
     public decimal? GrossWeight { get; set; }
     
+    public decimal? NetWeight { get; set; }
     public string AgreementNumber { get; set; }
     
     public  Party Carrier { get; set; }
