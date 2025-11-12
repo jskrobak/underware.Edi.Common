@@ -17,7 +17,7 @@ public static class Extensions
     
     public static byte[] GetBytes(this IEdiInterchange itr, Encoding enc)
     {
-        return enc.GetBytes(itr.ToString());
+        return enc.GetBytes(itr.TextContent);
     }   
     
     public static string DistillNumbers(this string input)

@@ -4,15 +4,21 @@ public class OrderResponseItem: OrderItem
 {
     public decimal ConfirmedQty { get; set; }
     public DateTime ConfirmedDeliveryDate { get; set; }
-    public decimal? ConfirmedNetUnitPrice { get; set; }  
-    
-    public int GetActionCode()
+    public decimal? ConfirmedNetUnitPrice { get; set; }
+
+    public OrderResponseItemAction Action { get; private set; }
+
+    public void RecalculateAction()
     {
-        if (ConfirmedQty == 0) return 7;
-        if (ConfirmedQty != Qty) return 3;
-        if (DeliveryDate != ConfirmedDeliveryDate) return 3;
-        if (NetUnitPrice.HasValue && ConfirmedNetUnitPrice.HasValue && NetUnitPrice != ConfirmedNetUnitPrice) return 5;
-            
-        return 5;
+        if (ConfirmedQty == 0) Action = OrderResponseItemAction.REJECTED;
+        else if (ConfirmedQty != Qty 
+            || DeliveryDate != ConfirmedDeliveryDate 
+            || (NetUnitPrice.HasValue &&
+            ConfirmedNetUnitPrice.HasValue &&
+            NetUnitPrice != ConfirmedNetUnitPrice)) Action = OrderResponseItemAction.CHANGED;
+        else
+            Action = OrderResponseItemAction.ACCEPTED;
+        
+        Console.WriteLine($"Result: {Action}");
     }
 }

@@ -10,4 +10,5 @@ public interface IEdiInterchange
     string RefNo { get; }
     DateTime? Created { get; }
     IEnumerable<IDocument> Documents { get; }
+    string TextContent { get; }
 }
